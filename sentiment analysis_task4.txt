@@ -1,0 +1,60 @@
+import pandas as pd
+
+# Load data
+df = pd.read_csv(r"d:\code alpha\codealpha_Dataanalytics\books.csv")
+
+# Create Category (if not exists)
+if 'Category' not in df.columns:
+    def price_category(price):
+        if price < 20:
+            return "Cheap"
+        elif price < 40:
+            return "Medium"
+        else:
+            return "Expensive"
+
+    df['Category'] = df['Price'].apply(price_category)
+
+# ==============================
+# INSIGHTS GENERATION
+# ==============================
+
+total_books = len(df)
+avg_price = df['Price'].mean()
+max_price = df['Price'].max()
+min_price = df['Price'].min()
+
+most_expensive = df[df['Price'] == max_price]['Title'].values[0]
+cheapest = df[df['Price'] == min_price]['Title'].values[0]
+
+category_counts = df['Category'].value_counts()
+
+# ==============================
+# PRINT REPORT
+# ==============================
+
+print("\n===== DATA ANALYSIS REPORT =====\n")
+
+print(f"Total Books: {total_books}")
+print(f"Average Price: {avg_price:.2f}")
+print(f"Most Expensive Book: {most_expensive} ({max_price})")
+print(f"Cheapest Book: {cheapest} ({min_price})")
+
+print("\nCategory Distribution:")
+print(category_counts)
+
+# ==============================
+# SAVE REPORT TO FILE
+# ==============================
+
+with open("final_report.txt", "w") as f:
+    f.write("===== DATA ANALYSIS REPORT =====\n\n")
+    f.write(f"Total Books: {total_books}\n")
+    f.write(f"Average Price: {avg_price:.2f}\n")
+    f.write(f"Most Expensive Book: {most_expensive} ({max_price})\n")
+    f.write(f"Cheapest Book: {cheapest} ({min_price})\n\n")
+    
+    f.write("Category Distribution:\n")
+    f.write(category_counts.to_string())
+
+print("\nReport saved as final_report.txt")

@@ -1,0 +1,12 @@
+===== DATA ANALYSIS REPORT =====
+
+Total Books: 20
+Average Price: 38.05
+Most Expensive Book: Our Band Could Be Your Life: Scenes from the American Indie Underground, 1981-1991 (57.25)
+Cheapest Book: Starving Hearts (Triangular Trade Trilogy, #1) (13.99)
+
+Category Distribution:
+Category
+Expensive    10
+Medium        7
+Cheap         3

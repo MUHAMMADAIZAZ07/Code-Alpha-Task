@@ -1,0 +1,32 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Correct path use karo
+df = pd.read_csv(r"d:\code alpha\codealpha_Dataanalytics\books.csv")
+
+# Create Category
+def price_category(price):
+    if price < 20:
+        return "Cheap"
+    elif price < 40:
+        return "Medium"
+    else:
+        return "Expensive"
+
+df['Category'] = df['Price'].apply(price_category)
+
+# Graph 1
+plt.hist(df['Price'], bins=5)
+plt.title("Price Distribution")
+plt.show()
+
+# Graph 2
+df['Category'].value_counts().plot(kind='bar')
+plt.title("Category Distribution")
+plt.show()
+
+# Graph 3
+top10 = df.sort_values(by='Price', ascending=False).head(10)
+plt.barh(top10['Title'], top10['Price'])
+plt.title("Top 10 Expensive Books")
+plt.show()
